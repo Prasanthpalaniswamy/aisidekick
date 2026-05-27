@@ -53,7 +53,7 @@ def home(request):
 
 def aiskhome(request):
     categories = ServiceCategory.objects.all()
-    return render(request, 'landingpage/home.html', {'categories': categories})
+    return render(request, 'sidekick/landing.html', {'categories': categories})
 
 def service_list(request, category_id):
     category = get_object_or_404(ServiceCategory, id=category_id)

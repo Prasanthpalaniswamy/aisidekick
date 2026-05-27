@@ -1,0 +1,449 @@
+{% extends 'base.html' %}
+
+{% block title %}
+AISidekick | AI Sidekicks for Primavera Teams
+{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+
+<section class="relative overflow-hidden bg-[#0b1020] text-white min-h-screen">
+
+    <!-- BACKGROUND GLOWS -->
+
+    <div class="absolute top-[-120px] left-[-120px] w-[500px] h-[500px] bg-teal-500/10 blur-3xl rounded-full"></div>
+
+    <div class="absolute bottom-[-180px] right-[-120px] w-[500px] h-[500px] bg-cyan-500/10 blur-3xl rounded-full"></div>
+
+    <!-- NAVBAR -->
+
+    <nav class="relative z-20 border-b border-white/10 backdrop-blur-xl bg-black/10">
+
+        <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+
+            <!-- LOGO -->
+
+            <div class="text-2xl font-bold tracking-tight">
+                AI<span class="text-teal-300">Sidekick</span>
+            </div>
+
+            <!-- DESKTOP MENU -->
+
+            <div class="hidden md:flex items-center gap-8 text-sm text-slate-300">
+
+                <a href="#" class="hover:text-white transition duration-300">
+                    Products
+                </a>
+
+                <a href="#" class="hover:text-white transition duration-300">
+                    Features
+                </a>
+
+                <a href="#" class="hover:text-white transition duration-300">
+                    Pricing
+                </a>
+
+                <a href="#" class="hover:text-white transition duration-300">
+                    Docs
+                </a>
+
+                <a href="#" class="hover:text-white transition duration-300">
+                    Contact
+                </a>
+
+                <a href="#"
+                   class="bg-gradient-to-r from-teal-300 to-cyan-300 text-black px-5 py-2.5 rounded-2xl font-semibold hover:scale-105 transition-all duration-300 shadow-lg shadow-teal-500/20">
+
+                    Get Started
+
+                </a>
+
+            </div>
+
+            <!-- MOBILE CTA -->
+
+            <a href="#"
+               class="md:hidden bg-teal-300 text-black px-4 py-2 rounded-xl text-sm font-semibold">
+
+                Start
+
+            </a>
+
+        </div>
+
+    </nav>
+
+    <!-- HERO CONTENT -->
+
+    <div class="relative z-10 max-w-7xl mx-auto px-6 py-24 lg:py-36 grid lg:grid-cols-2 gap-20 items-center">
+
+        <!-- LEFT -->
+
+        <div>
+
+            <div class="inline-flex items-center gap-2 bg-white/[0.03] border border-white/10 rounded-full px-4 py-2 text-sm text-slate-300 mb-8 backdrop-blur-xl">
+
+                Enterprise AI + MCP Infrastructure
+
+            </div>
+
+            <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] mb-8 max-w-3xl">
+
+                AI Sidekicks for Primavera Teams
+
+            </h1>
+
+            <p class="text-slate-400 text-lg leading-8 mb-10 max-w-2xl">
+
+                Connect AI directly to Oracle Primavera P6 and Unifier using secure MCP-powered integrations.
+
+                Empower PMOs, planners, and enterprise project teams with intelligent workflow automation.
+
+            </p>
+
+            <div class="flex flex-wrap gap-4">
+
+                <a href="#"
+                   class="bg-gradient-to-r from-teal-300 to-cyan-300 text-black px-8 py-4 rounded-2xl font-semibold hover:scale-105 transition-all duration-300 shadow-xl shadow-teal-500/20">
+
+                    Start Free Trial
+
+                </a>
+
+                <a href="#"
+                   class="border border-white/10 bg-white/[0.03] px-8 py-4 rounded-2xl text-white hover:bg-white/[0.06] transition-all duration-300">
+
+                    View Documentation
+
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT CARD -->
+
+        <div class="bg-white/[0.03] border border-white/10 rounded-[32px] p-8 backdrop-blur-2xl shadow-[0_0_60px_rgba(45,212,191,0.08)]">
+
+            <h3 class="text-2xl font-semibold mb-8">
+                Available AI Sidekicks
+            </h3>
+
+            <div class="space-y-6">
+
+                <div class="border-b border-white/10 pb-6">
+
+                    <h4 class="text-lg font-semibold mb-2">
+                        P6 Sidekick
+                    </h4>
+
+                    <p class="text-slate-400 leading-7">
+                        AI-powered Primavera P6 assistant for critical path analysis, schedule intelligence, and planning workflows.
+                    </p>
+
+                </div>
+
+                <div class="border-b border-white/10 pb-6">
+
+                    <h4 class="text-lg font-semibold mb-2">
+                        Unifier Sidekick
+                    </h4>
+
+                    <p class="text-slate-400 leading-7">
+                        Intelligent assistant for Primavera Unifier workflows, approvals, reporting, and business processes.
+                    </p>
+
+                </div>
+
+                <div>
+
+                    <h4 class="text-lg font-semibold mb-2">
+                        Hosted MCP Infrastructure
+                    </h4>
+
+                    <p class="text-slate-400 leading-7">
+                        Secure hosted MCP services with API key authentication and enterprise-ready integrations.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FEATURES -->
+
+<section class="relative bg-[#0f172a] text-white py-28 overflow-hidden">
+
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-teal-500/[0.02] to-transparent"></div>
+
+    <div class="relative max-w-7xl mx-auto px-6">
+
+        <!-- TITLE -->
+
+        <div class="text-center mb-20">
+
+            <h2 class="text-4xl lg:text-5xl font-bold mb-6 tracking-tight">
+                Built for Enterprise Project Controls
+            </h2>
+
+            <p class="text-slate-400 text-lg max-w-3xl mx-auto leading-8">
+
+                Specialized AI assistants designed for Primavera ecosystems and enterprise project delivery teams.
+
+            </p>
+
+        </div>
+
+        <!-- CARDS -->
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <!-- CARD -->
+
+            <div class="bg-white/[0.03] border border-white/10 rounded-3xl p-8 hover:-translate-y-2 hover:border-teal-400/40 hover:shadow-2xl hover:shadow-teal-500/10 transition-all duration-300">
+
+                <div class="text-2xl font-semibold mb-4">
+                    P6 Sidekick
+                </div>
+
+                <p class="text-slate-400 leading-7 mb-8">
+                    Transform Primavera P6 schedules into AI-accessible planning intelligence.
+                </p>
+
+                <ul class="space-y-3 text-slate-300">
+
+                    <li>✓ Critical Path Analysis</li>
+                    <li>✓ Schedule Health Checks</li>
+                    <li>✓ Natural Language Queries</li>
+                    <li>✓ AI Planning Assistance</li>
+
+                </ul>
+
+            </div>
+
+            <!-- CARD -->
+
+            <div class="bg-white/[0.03] border border-white/10 rounded-3xl p-8 hover:-translate-y-2 hover:border-teal-400/40 hover:shadow-2xl hover:shadow-teal-500/10 transition-all duration-300">
+
+                <div class="text-2xl font-semibold mb-4">
+                    Unifier Sidekick
+                </div>
+
+                <p class="text-slate-400 leading-7 mb-8">
+                    Accelerate enterprise workflows and automate Unifier business processes.
+                </p>
+
+                <ul class="space-y-3 text-slate-300">
+
+                    <li>✓ Workflow Automation</li>
+                    <li>✓ AI Reporting</li>
+                    <li>✓ Business Process Insights</li>
+                    <li>✓ Smart Approvals</li>
+
+                </ul>
+
+            </div>
+
+            <!-- CARD -->
+
+            <div class="bg-white/[0.03] border border-white/10 rounded-3xl p-8 hover:-translate-y-2 hover:border-teal-400/40 hover:shadow-2xl hover:shadow-teal-500/10 transition-all duration-300">
+
+                <div class="text-2xl font-semibold mb-4">
+                    Hosted MCP Platform
+                </div>
+
+                <p class="text-slate-400 leading-7 mb-8">
+                    Secure cloud-hosted MCP infrastructure with scalable API access.
+                </p>
+
+                <ul class="space-y-3 text-slate-300">
+
+                    <li>✓ API Key Authentication</li>
+                    <li>✓ Subscription Access</li>
+                    <li>✓ Enterprise Security</li>
+                    <li>✓ Cloud Hosted</li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- HOW IT WORKS -->
+
+<section class="relative bg-[#0b1020] text-white py-28 overflow-hidden">
+
+    <!-- BACKGROUND GLOW -->
+
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-teal-500/[0.04] blur-3xl rounded-full"></div>
+
+    <div class="relative max-w-7xl mx-auto px-6">
+
+        <!-- TITLE -->
+
+        <div class="text-center mb-20">
+
+            <h2 class="text-4xl lg:text-5xl font-bold mb-6 tracking-tight">
+                How It Works
+            </h2>
+
+            <p class="text-slate-400 text-lg leading-8 max-w-3xl mx-auto">
+                Connect your AI tools directly to Primavera systems using secure MCP integrations.
+            </p>
+
+        </div>
+
+        <!-- WORKFLOW -->
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+
+            <!-- STEP 1 -->
+
+            <div class="relative bg-white/[0.03] border border-white/10 rounded-3xl p-8 backdrop-blur-xl hover:-translate-y-2 hover:border-teal-400/40 hover:shadow-2xl hover:shadow-teal-500/10 transition-all duration-300">
+
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-r from-teal-300 to-cyan-300 text-black flex items-center justify-center font-bold text-lg mb-6 shadow-lg shadow-teal-500/20">
+                    1
+                </div>
+
+                <h4 class="text-xl font-semibold mb-4">
+                    Subscribe
+                </h4>
+
+                <p class="text-slate-400 leading-7">
+                    Purchase access to P6 Sidekick or Unifier Sidekick through AISidekick.
+                </p>
+
+            </div>
+
+            <!-- STEP 2 -->
+
+            <div class="relative bg-white/[0.03] border border-white/10 rounded-3xl p-8 backdrop-blur-xl hover:-translate-y-2 hover:border-teal-400/40 hover:shadow-2xl hover:shadow-teal-500/10 transition-all duration-300">
+
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-r from-teal-300 to-cyan-300 text-black flex items-center justify-center font-bold text-lg mb-6 shadow-lg shadow-teal-500/20">
+                    2
+                </div>
+
+                <h4 class="text-xl font-semibold mb-4">
+                    Get API Key
+                </h4>
+
+                <p class="text-slate-400 leading-7">
+                    Receive secure authentication credentials and MCP endpoint access.
+                </p>
+
+            </div>
+
+            <!-- STEP 3 -->
+
+            <div class="relative bg-white/[0.03] border border-white/10 rounded-3xl p-8 backdrop-blur-xl hover:-translate-y-2 hover:border-teal-400/40 hover:shadow-2xl hover:shadow-teal-500/10 transition-all duration-300">
+
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-r from-teal-300 to-cyan-300 text-black flex items-center justify-center font-bold text-lg mb-6 shadow-lg shadow-teal-500/20">
+                    3
+                </div>
+
+                <h4 class="text-xl font-semibold mb-4">
+                    Connect AI Client
+                </h4>
+
+                <p class="text-slate-400 leading-7">
+                    Configure Claude, OpenAI, Cursor, or your preferred MCP-compatible platform.
+                </p>
+
+            </div>
+
+            <!-- STEP 4 -->
+
+            <div class="relative bg-white/[0.03] border border-white/10 rounded-3xl p-8 backdrop-blur-xl hover:-translate-y-2 hover:border-teal-400/40 hover:shadow-2xl hover:shadow-teal-500/10 transition-all duration-300">
+
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-r from-teal-300 to-cyan-300 text-black flex items-center justify-center font-bold text-lg mb-6 shadow-lg shadow-teal-500/20">
+                    4
+                </div>
+
+                <h4 class="text-xl font-semibold mb-4">
+                    Use AI Workflows
+                </h4>
+
+                <p class="text-slate-400 leading-7">
+                    Interact with Primavera data using intelligent AI-assisted workflows.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- CTA -->
+
+<section class="relative bg-[#0f172a] text-white py-32 overflow-hidden">
+
+    <div class="absolute bottom-[-200px] left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-cyan-500/[0.05] blur-3xl rounded-full"></div>
+
+    <div class="relative max-w-5xl mx-auto px-6 text-center">
+
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight mb-8">
+
+            Start Building AI-Powered Project Controls
+
+        </h2>
+
+        <p class="text-slate-400 text-lg leading-8 mb-12 max-w-3xl mx-auto">
+
+            Bring AI directly into your Primavera ecosystem with secure MCP integrations built for enterprise teams.
+
+        </p>
+
+        <a href="#"
+           class="inline-flex items-center justify-center bg-gradient-to-r from-teal-300 to-cyan-300 text-black px-10 py-5 rounded-2xl font-semibold hover:scale-105 transition-all duration-300 shadow-2xl shadow-teal-500/20">
+
+            Request Early Access
+
+        </a>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer class="bg-[#0b1020] border-t border-white/10 text-slate-500 py-10">
+
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+
+        <div class="text-sm">
+            © 2026 AISidekick. All rights reserved.
+        </div>
+
+        <div class="flex items-center gap-6 text-sm">
+
+            <a href="#" class="hover:text-white transition">
+                Privacy
+            </a>
+
+            <a href="#" class="hover:text-white transition">
+                Terms
+            </a>
+
+            <a href="#" class="hover:text-white transition">
+                Contact
+            </a>
+
+        </div>
+
+    </div>
+
+</footer>
+
+{% endblock %}
