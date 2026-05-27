@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white py-3">
+                <h4 class="mb-0">Book {{ service.name }}</h4>
+            </div>
+            <div class="card-body p-4">
+                <div class="mb-4">
+                    <p class="text-secondary small mb-1">Service</p>
+                    <h5 class="fw-bold">{{ service.name }}</h5>
+                    <p class="text-secondary small mb-1">Price</p>
+                    <h5 class="fw-bold text-success">${{ service.price }}</h5>
+                    <p class="text-secondary small mb-1">Duration</p>
+                    <h5 class="fw-bold">{{ service.duration_minutes }} mins</h5>
+                </div>
+
+                <hr>
+
+                <form method="post">
+                    {% csrf_token %}
+
+                    {% for field in form %}
+                    <div class="mb-3">
+                        <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.errors %}
+                        <div class="text-danger small mt-1">
+                            {{ field.errors.as_text }}
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+
+                    <div class="d-grid gap-2 mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg">Confirm Booking</button>
+                        <a href="{% url 'service_detail' service.id %}" class="btn btn-outline-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'service_list' service.category.id %}">{{ service.category.name }}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ service.name }}</li>
+    </ol>
+</nav>
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card mb-4">
+            {% if service.image %}
+            <img src="{{ service.image.url }}" class="card-img-top" alt="{{ service.name }}"
+                style="max-height: 400px; object-fit: cover;">
+            {% endif %}
+            <div class="card-body p-4">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h1 class="h2 mb-0">{{ service.name }}</h1>
+                    <span class="fs-4 fw-bold text-success">${{ service.price }}</span>
+                </div>
+
+                <div class="d-flex align-items-center mb-4 text-secondary">
+                    <div class="me-4">
+                        <i class="far fa-clock me-2"></i>{{ service.duration_minutes }} mins
+                    </div>
+                    <div>
+                        <i class="fas fa-tag me-2"></i>{{ service.category.name }}
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <h5 class="mb-3">About this service</h5>
+                    <p class="text-secondary">{{ service.description|linebreaks }}</p>
+                </div>
+
+                <div class="d-grid gap-2">
+                    <a href="{% url 'book_service' service.id %}" class="btn btn-primary btn-lg">
+                        Book Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

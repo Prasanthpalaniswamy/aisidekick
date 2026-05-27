@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{# If Razorpay loaded this page inside its popup window, redirect the parent and close the popup #}
+<script>
+    if (window.opener && !window.opener.closed) {
+        window.opener.location.href = "{% url 'home' %}";
+        window.close();
+    }
+</script>
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-6 text-center">
+        <div class="card shadow-sm p-5">
+            <div class="mb-4">
+                <i class="fas fa-times-circle text-danger" style="font-size: 5rem;"></i>
+            </div>
+            <h2 class="fw-bold text-danger">Payment Failed!</h2>
+            <p class="text-secondary mt-2">Payment signature verification failed. Your transaction could not be
+                completed.</p>
+            <a href="{% url 'home' %}" class="btn btn-outline-danger mt-3">Back to Home</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

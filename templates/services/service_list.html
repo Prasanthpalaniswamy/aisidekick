@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ category.name }}</li>
+    </ol>
+</nav>
+
+<div class="row mb-4 align-items-center">
+    <div class="col">
+        <h2 class="mb-0">{{ category.name }}</h2>
+        <p class="text-secondary">{{ category.description }}</p>
+    </div>
+</div>
+
+<div class="row g-4">
+    {% for service in services %}
+    <div class="col-md-6 col-lg-4">
+        <div class="card h-100">
+            {% if service.image %}
+            <img src="{{ service.image.url }}" class="card-img-top" alt="{{ service.name }}"
+                style="height: 200px; object-fit: cover;">
+            {% endif %}
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                    <h5 class="card-title mb-0">{{ service.name }}</h5>
+                    <span class="badge bg-success">${{ service.price }}</span>
+                </div>
+                <div class="mb-3 text-secondary small">
+                    <i class="far fa-clock me-1"></i> {{ service.duration_minutes }} mins
+                </div>
+                <p class="card-text">{{ service.description|truncatewords:25 }}</p>
+                <a href="{% url 'service_detail' service.id %}" class="btn btn-primary w-100">View Details</a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12 text-center py-5">
+        <p class="text-secondary">No services available in this category yet.</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid login-bg min-vh-100 d-flex align-items-center justify-content-center">
+    <div class="col-md-6 col-lg-4">
+        <div class="card login-card shadow-lg border-0 rounded-4">
+            <div class="card-body p-5">
+                <div class="text-center mb-4">
+                    <h2 class="fw-bold">ServiceSpot</h2>
+                    <p class="text-muted small">Book trusted services effortlessly</p>
+                </div>
+
+                <form method="post">
+                    {% csrf_token %}
+
+                    <div class="mb-3">
+                        {{ form.username }}
+                    </div>
+
+                    <div class="mb-4">
+                        {{ form.password }}
+                    </div>
+
+                    <div class="d-grid">
+                        <button class="btn btn-primary btn-lg rounded-pill">
+                            Login
+                        </button>
+                    </div>
+                </form>
+
+                <div class="text-center mt-4 small">
+                    Don’t have an account?
+                    <a href="{% url 'signup' %}" class="fw-semibold">Sign up</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('input').forEach(el => {
+            el.classList.add('form-control', 'form-control-lg', 'rounded-pill');
+        });
+    });
+</script>
+{% endblock %}

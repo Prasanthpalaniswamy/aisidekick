@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{# If Razorpay loaded this page inside its popup window, redirect the parent and close the popup #}
+<script>
+    if (window.opener && !window.opener.closed) {
+        window.opener.location.href = "{% url 'my_bookings' %}";
+        window.close();
+    }
+</script>
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-6 text-center">
+        <div class="card shadow-sm p-5">
+            <div class="mb-4">
+                <i class="fas fa-check-circle text-success" style="font-size: 5rem;"></i>
+            </div>
+            <h2 class="fw-bold text-success">Payment Successful!</h2>
+            <p class="text-secondary mt-2">Your payment has been verified and confirmed.</p>
+            {% if payment_id %}
+            <p class="small text-muted">Payment ID: <code>{{ payment_id }}</code></p>
+            {% endif %}
+            <a href="{% url 'my_bookings' %}" class="btn btn-success mt-3">View My Bookings</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

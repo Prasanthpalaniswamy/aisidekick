@@ -1,0 +1,12 @@
+The Django development server is now running! 🚀
+
+You can access the Service Booking System at: http://127.0.0.1:8000/
+
+🔑 Admin Access
+URL: http://127.0.0.1:8000/admin/
+Username: admin
+Password: Admin123!
+🧪 Test User
+Username: testuser
+Password: Start123!
+Let me know if you need any further assistance!

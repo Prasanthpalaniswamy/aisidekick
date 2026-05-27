@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AISidekick | AI Assistants for Primavera Teams</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family:'Inter',sans-serif;
+      background:#0b1020;
+      color:#ffffff;
+      overflow-x:hidden;
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    .container{
+      width:90%;
+      max-width:1200px;
+      margin:auto;
+    }
+
+    /* NAVBAR */
+
+    nav{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      backdrop-filter:blur(10px);
+      background:rgba(11,16,32,0.75);
+      border-bottom:1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav-wrapper{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px 0;
+    }
+
+    .logo{
+      font-size:1.6rem;
+      font-weight:700;
+      letter-spacing:-0.5px;
+    }
+
+    .logo span{
+      color:#5eead4;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:30px;
+      align-items:center;
+    }
+
+    .nav-links a{
+      color:#cbd5e1;
+      transition:0.3s;
+      font-size:0.95rem;
+    }
+
+    .nav-links a:hover{
+      color:#ffffff;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:14px 24px;
+      border-radius:12px;
+      font-weight:600;
+      transition:0.3s;
+      cursor:pointer;
+    }
+
+    .btn-primary{
+      background:#5eead4;
+      color:#08111f;
+    }
+
+    .btn-primary:hover{
+      transform:translateY(-2px);
+      box-shadow:0 10px 30px rgba(94,234,212,0.25);
+    }
+
+    .btn-secondary{
+      border:1px solid rgba(255,255,255,0.15);
+      color:#ffffff;
+    }
+
+    .btn-secondary:hover{
+      background:rgba(255,255,255,0.08);
+    }
+
+    /* HERO */
+
+    .hero{
+      padding:100px 0 80px;
+      position:relative;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:60px;
+      align-items:center;
+    }
+
+    .hero h1{
+      font-size:4rem;
+      line-height:1.1;
+      margin-bottom:24px;
+      letter-spacing:-2px;
+    }
+
+    .hero p{
+      color:#cbd5e1;
+      font-size:1.1rem;
+      line-height:1.8;
+      margin-bottom:36px;
+      max-width:600px;
+    }
+
+    .hero-buttons{
+      display:flex;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+
+    .hero-card{
+      background:linear-gradient(145deg,#131c35,#0d1427);
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:24px;
+      padding:40px;
+      box-shadow:0 20px 60px rgba(0,0,0,0.35);
+    }
+
+    .hero-card h3{
+      font-size:1.3rem;
+      margin-bottom:24px;
+    }
+
+    .feature-item{
+      padding:18px 0;
+      border-bottom:1px solid rgba(255,255,255,0.08);
+    }
+
+    .feature-item:last-child{
+      border-bottom:none;
+    }
+
+    .feature-item h4{
+      margin-bottom:8px;
+    }
+
+    .feature-item p{
+      margin:0;
+      font-size:0.95rem;
+      color:#94a3b8;
+      line-height:1.6;
+    }
+
+    /* PRODUCTS */
+
+    .section{
+      padding:90px 0;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:60px;
+    }
+
+    .section-title h2{
+      font-size:2.5rem;
+      margin-bottom:16px;
+    }
+
+    .section-title p{
+      color:#94a3b8;
+      max-width:700px;
+      margin:auto;
+      line-height:1.8;
+    }
+
+    .products{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:30px;
+    }
+
+    .product-card{
+      background:#121a30;
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:22px;
+      padding:32px;
+      transition:0.3s;
+    }
+
+    .product-card:hover{
+      transform:translateY(-8px);
+      border-color:#5eead4;
+    }
+
+    .product-card h3{
+      margin-bottom:14px;
+      font-size:1.4rem;
+    }
+
+    .product-card p{
+      color:#94a3b8;
+      line-height:1.8;
+      margin-bottom:24px;
+    }
+
+    .product-card ul{
+      list-style:none;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      color:#dbeafe;
+    }
+
+    /* HOW IT WORKS */
+
+    .workflow{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:24px;
+      margin-top:50px;
+    }
+
+    .workflow-step{
+      background:#121a30;
+      padding:30px;
+      border-radius:20px;
+      border:1px solid rgba(255,255,255,0.08);
+    }
+
+    .workflow-step span{
+      display:inline-block;
+      width:42px;
+      height:42px;
+      border-radius:50%;
+      background:#5eead4;
+      color:#08111f;
+      font-weight:700;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin-bottom:20px;
+    }
+
+    .workflow-step h4{
+      margin-bottom:12px;
+    }
+
+    .workflow-step p{
+      color:#94a3b8;
+      line-height:1.7;
+    }
+
+    /* CTA */
+
+    .cta{
+      background:linear-gradient(145deg,#12213f,#0c162b);
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:28px;
+      padding:60px;
+      text-align:center;
+    }
+
+    .cta h2{
+      font-size:2.5rem;
+      margin-bottom:18px;
+    }
+
+    .cta p{
+      color:#cbd5e1;
+      margin-bottom:30px;
+      line-height:1.8;
+    }
+
+    footer{
+      padding:40px 0;
+      text-align:center;
+      color:#64748b;
+      border-top:1px solid rgba(255,255,255,0.08);
+      margin-top:80px;
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:900px){
+
+      .hero-grid{
+        grid-template-columns:1fr;
+      }
+
+      .hero h1{
+        font-size:3rem;
+      }
+
+      .nav-links{
+        display:none;
+      }
+
+      .cta{
+        padding:40px 24px;
+      }
+
+      .cta h2{
+        font-size:2rem;
+      }
+
+    }
+
+    @media(max-width:600px){
+
+      .hero{
+        padding-top:70px;
+      }
+
+      .hero h1{
+        font-size:2.4rem;
+      }
+
+      .section-title h2{
+        font-size:2rem;
+      }
+
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+
+  <nav>
+    <div class="container nav-wrapper">
+      <div class="logo">
+        AI<span>Sidekick</span>
+      </div>
+
+      <div class="nav-links">
+        <a href="#">Products</a>
+        <a href="#">Features</a>
+        <a href="#">Pricing</a>
+        <a href="#">Docs</a>
+        <a href="#">Contact</a>
+        <a href="#" class="btn btn-primary">Get Started</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+
+  <section class="hero">
+    <div class="container hero-grid">
+
+      <div>
+        <h1>
+          AI Sidekicks for Primavera Teams
+        </h1>
+
+        <p>
+          Connect AI directly to Oracle Primavera P6 and Unifier using secure MCP-powered integrations. 
+          Empower planners, PMOs, and enterprise project teams with intelligent workflow automation.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#" class="btn btn-primary">Start Free Trial</a>
+          <a href="#" class="btn btn-secondary">View Documentation</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+
+        <h3>Available AI Sidekicks</h3>
+
+        <div class="feature-item">
+          <h4>P6 Sidekick</h4>
+          <p>
+            AI-powered Primavera P6 assistant for schedule analysis, critical path insights, and planning workflows.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Unifier Sidekick</h4>
+          <p>
+            Intelligent Unifier assistant for business processes, workflows, approvals, and enterprise reporting.
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <h4>Secure MCP Access</h4>
+          <p>
+            Hosted MCP infrastructure with API key authentication and enterprise-ready integrations.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+
+  <section class="section">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Built for Enterprise Project Controls</h2>
+        <p>
+          Specialized AI assistants designed for Oracle Primavera ecosystems and enterprise project delivery teams.
+        </p>
+      </div>
+
+      <div class="products">
+
+        <div class="product-card">
+          <h3>P6 Sidekick</h3>
+          <p>
+            Transform Primavera P6 schedules into AI-accessible planning intelligence.
+          </p>
+
+          <ul>
+            <li>✓ Critical Path Analysis</li>
+            <li>✓ Schedule Health Checks</li>
+            <li>✓ Natural Language Queries</li>
+            <li>✓ AI Planning Assistance</li>
+          </ul>
+        </div>
+
+        <div class="product-card">
+          <h3>Unifier Sidekick</h3>
+          <p>
+            Accelerate enterprise workflows and automate Unifier business processes.
+          </p>
+
+          <ul>
+            <li>✓ Workflow Automation</li>
+            <li>✓ AI Reporting</li>
+            <li>✓ Business Process Insights</li>
+            <li>✓ Smart Approvals</li>
+          </ul>
+        </div>
+
+        <div class="product-card">
+          <h3>Hosted MCP Platform</h3>
+          <p>
+            Secure cloud-hosted MCP infrastructure with scalable API access.
+          </p>
+
+          <ul>
+            <li>✓ API Key Authentication</li>
+            <li>✓ Subscription Access</li>
+            <li>✓ Enterprise Security</li>
+            <li>✓ Render Cloud Hosting</li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+
+  <section class="section">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>How It Works</h2>
+
+        <p>
+          Connect your AI tools directly to Primavera systems using secure MCP integrations.
+        </p>
+      </div>
+
+      <div class="workflow">
+
+        <div class="workflow-step">
+          <span>1</span>
+          <h4>Subscribe</h4>
+          <p>
+            Purchase access to P6 Sidekick or Unifier Sidekick through AISidekick.
+          </p>
+        </div>
+
+        <div class="workflow-step">
+          <span>2</span>
+          <h4>Get API Key</h4>
+          <p>
+            Receive secure authentication credentials and MCP endpoint access.
+          </p>
+        </div>
+
+        <div class="workflow-step">
+          <span>3</span>
+          <h4>Connect AI Client</h4>
+          <p>
+            Configure Claude, OpenAI, Cursor, or your preferred MCP-compatible platform.
+          </p>
+        </div>
+
+        <div class="workflow-step">
+          <span>4</span>
+          <h4>Use AI Workflows</h4>
+          <p>
+            Interact with Primavera data using intelligent AI-assisted workflows.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+
+  <section class="section">
+    <div class="container">
+
+      <div class="cta">
+        <h2>Start Building AI-Powered Project Controls</h2>
+
+        <p>
+          Bring AI directly into your Primavera ecosystem with secure MCP integrations built for enterprise teams.
+        </p>
+
+        <a href="#" class="btn btn-primary">
+          Request Early Access
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+    <div class="container">
+      © 2026 AISidekick. AI Assistants for Primavera Teams.
+    </div>
+  </footer>
+
+</body>
+</html>

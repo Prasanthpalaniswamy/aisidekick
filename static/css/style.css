@@ -1,0 +1,16 @@
+.login-card {
+    background: #ffffff;
+}
+
+.login-card h2 {
+    letter-spacing: -0.5px;
+}
+
+.login-card .form-control:focus {
+    box-shadow: none;
+    border-color: #0d6efd;
+}
+
+.login-bg {
+    background: linear-gradient(135deg, #f8f9fa, #eef2ff);
+}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="text-center mb-5">
+    <h1 class="display-4 fw-bold mb-3">Professional Services at Your Doorstep</h1>
+    <p class="lead text-secondary">Choose from our wide range of services</p>
+</div>
+
+<div class="row g-4">
+    {% for category in categories %}
+    <div class="col-md-4">
+        <div class="card h-100">
+            {% if category.image %}
+            <img src="{{ category.image.url }}" class="card-img-top" alt="{{ category.name }}"
+                style="height: 200px; object-fit: cover;">
+            {% else %}
+            <div class="bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+                <i class="fas {{ category.icon }} fa-4x text-secondary"></i>
+            </div>
+            {% endif %}
+            <div class="card-body text-center">
+                <h3 class="card-title h4">{{ category.name }}</h3>
+                <p class="card-text text-secondary">{{ category.description|truncatewords:20 }}</p>
+                <a href="{% url 'service_list' category.id %}" class="btn btn-outline-primary stretched-link">View
+                    Services</a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12 text-center py-5">
+        <p class="text-secondary">No service categories available yet.</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

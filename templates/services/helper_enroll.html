@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-8 col-lg-6">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white text-center py-4">
+                <h2 class="mb-0 fw-bold">Become a ServiceSpot Helper</h2>
+                <p class="mb-0 mt-2">Join our network of professional service providers</p>
+            </div>
+            <div class="card-body p-4">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <label class="form-label fw-bold">Full Name</label>
+                            {{ form.full_name }}
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label fw-bold">Phone Number</label>
+                            {{ form.phone }}
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label fw-bold">Address</label>
+                            {{ form.address }}
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label fw-bold">Skills</label>
+                            {{ form.skills }}
+                            <div class="form-text">e.g., House Cleaning, Kitchen Deep Clean, Gardening</div>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label fw-bold">Your Bio</label>
+                            {{ form.bio }}
+                            <div class="form-text">Briefly describe your experience and work history.</div>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label fw-bold">Profile Photo</label>
+                            {{ form.profile_image }}
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2 mt-5">
+                        <button type="submit" class="btn btn-primary btn-lg">Submit Application</button>
+                        <a href="{% url 'home' %}" class="btn btn-outline-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer bg-light text-center py-3">
+                <p class="small text-muted mb-0">Our team will review your application and contact you for training and
+                    verification within 2-3 business days.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
