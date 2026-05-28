@@ -1,0 +1,73 @@
+{% load static %}
+
+<nav class="relative z-20 border-b border-white/10 backdrop-blur-xl bg-black/10">
+
+    <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+
+        <!-- LOGO -->
+
+        <a href="{% url 'landing' %}" class="text-2xl font-bold tracking-tight">
+
+            AI<span class="text-teal-300">Sidekick</span>
+
+        </a>
+
+        <!-- DESKTOP MENU -->
+
+        <div class="hidden md:flex items-center gap-8 text-sm text-slate-300">
+
+
+            <a href="{% url 'landing' %}"
+                class="transition duration-300 {% if request.resolver_match.url_name == 'landing' %}text-teal-300 border-b border-teal-300 pb-1{% else %}text-slate-300 hover:text-white{% endif %}">
+
+                Home
+
+            </a>
+
+            <a href="{% url 'products' %}"
+                class="transition duration-300 {% if request.resolver_match.url_name == 'products' %}text-teal-300 border-b border-teal-300 pb-1{% else %}text-slate-300 hover:text-white{% endif %}">
+                Products
+            </a>
+
+            <a href="{% url 'features' %}"
+                class="transition duration-300 {% if request.resolver_match.url_name == 'features' %}text-teal-300 border-b border-teal-300 pb-1{% else %}text-slate-300 hover:text-white{% endif %}">
+                Features
+            </a>
+
+            <a href="{% url 'pricing' %}"
+                class="transition duration-300 {% if request.resolver_match.url_name == 'pricing' %}text-teal-300 border-b border-teal-300 pb-1{% else %}text-slate-300 hover:text-white{% endif %}">
+
+                Pricing
+
+            </a>
+
+            <a href="{% url 'docs' %}"
+                class="transition duration-300 {% if request.resolver_match.url_name == 'docs' %}text-teal-300 border-b border-teal-300 pb-1{% else %}text-slate-300 hover:text-white{% endif %}">
+                Docs
+            </a>
+
+            <a href="{% url 'contact' %}"
+                class="transition duration-300 {% if request.resolver_match.url_name == 'contact' %}text-teal-300 border-b border-teal-300 pb-1{% else %}text-slate-300 hover:text-white{% endif %}">
+                Contact
+            </a>
+
+            <a href="#"
+                class="bg-gradient-to-r from-teal-300 to-cyan-300 text-black px-5 py-2.5 rounded-2xl font-semibold hover:scale-105 transition-all duration-300 shadow-lg shadow-teal-500/20">
+
+                Get Started
+
+            </a>
+
+        </div>
+
+        <!-- MOBILE CTA -->
+
+        <a href="#" class="md:hidden bg-teal-300 text-black px-4 py-2 rounded-xl text-sm font-semibold">
+
+            Start
+
+        </a>
+
+    </div>
+
+</nav>

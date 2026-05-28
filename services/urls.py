@@ -2,8 +2,15 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+    path('', views.landing, name='landing'),
+    path('pricing/', views.pricing, name='pricing'),
+    path('products/', views.products, name='products'),
+    path('features/', views.features, name='features'),
+    path('docs/', views.docs, name='docs'),
+    path('contact/', views.contact, name='contact'),
+    path('privacy/', views.privacy, name='privacy'),
+    path('terms/', views.terms, name='terms'),
     path('servicebooking/', views.home, name='home'),
-    path('', views.aiskhome, name='aiskhome'),
     path('signup/', views.signup, name='signup'),
     path('category/<int:category_id>/', views.service_list, name='service_list'),
     path('service/<int:service_id>/', views.service_detail, name='service_detail'),

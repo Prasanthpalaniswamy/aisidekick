@@ -51,9 +51,7 @@ def home(request):
     categories = ServiceCategory.objects.all()
     return render(request, 'services/home.html', {'categories': categories})
 
-def aiskhome(request):
-    categories = ServiceCategory.objects.all()
-    return render(request, 'sidekick/landing.html', {'categories': categories})
+
 
 def service_list(request, category_id):
     category = get_object_or_404(ServiceCategory, id=category_id)
@@ -370,6 +368,32 @@ def get_payment_details(request, payment_id):
             "message": str(e)
         }, status=500)
 
+
+
+def landing(request):
+    categories = ServiceCategory.objects.all()
+    return render(request, 'pages/landing.html', {'categories': categories})
+
+def pricing(request):
+    return render(request, 'pages/pricing.html')
+
+def products(request):
+    return render(request, 'pages/products.html')
+
+def features(request):
+    return render(request, 'pages/features.html')
+
+def docs(request):
+    return render(request, 'pages/docs.html')
+
+def contact(request):
+    return render(request, 'pages/contact.html')
+
+def privacy(request):
+    return render(request, 'pages/privacy.html')
+
+def terms(request):
+    return render(request, 'pages/terms.html')
 
 def health_check(request):
     """Mirror of Node's /health"""

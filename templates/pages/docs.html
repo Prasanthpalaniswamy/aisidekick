@@ -1,0 +1,435 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}
+Documentation | AISidekick
+{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+
+<section class="relative overflow-hidden bg-[#0b1020] text-white py-28">
+
+    <!-- BACKGROUND EFFECTS -->
+
+    <div class="absolute top-[-200px] left-[-150px] w-[500px] h-[500px] bg-teal-500/10 blur-3xl rounded-full"></div>
+
+    <div class="absolute bottom-[-200px] right-[-150px] w-[500px] h-[500px] bg-cyan-500/10 blur-3xl rounded-full"></div>
+
+    <div class="relative max-w-7xl mx-auto px-6 text-center">
+
+        <div class="inline-flex items-center gap-2 bg-white/[0.03] border border-white/10 rounded-full px-4 py-2 text-sm text-slate-300 mb-8 backdrop-blur-xl">
+
+            Developer Documentation & MCP Integration Guides
+
+        </div>
+
+        <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] mb-8">
+
+            AISidekick <br>
+            Documentation
+
+        </h1>
+
+        <p class="text-slate-400 text-lg leading-8 max-w-3xl mx-auto">
+
+            Learn how to connect AI clients to AISidekick MCP endpoints and integrate Primavera intelligence into your workflows.
+
+        </p>
+
+    </div>
+
+</section>
+
+<!-- DOCS LAYOUT -->
+
+<section class="bg-[#0f172a] text-white py-20">
+
+    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-[280px_1fr] gap-10">
+
+        <!-- SIDEBAR -->
+
+        <aside class="hidden lg:block sticky top-24 h-fit">
+
+            <div class="bg-white/[0.03] border border-white/10 rounded-3xl p-6 backdrop-blur-xl">
+
+                <h3 class="text-lg font-semibold mb-6">
+                    Documentation
+                </h3>
+
+                <nav class="space-y-3 text-sm">
+
+                    <a href="#overview"
+                       class="block text-slate-300 hover:text-white transition">
+
+                        Overview
+
+                    </a>
+
+                    <a href="#authentication"
+                       class="block text-slate-300 hover:text-white transition">
+
+                        Authentication
+
+                    </a>
+
+                    <a href="#mcp-endpoints"
+                       class="block text-slate-300 hover:text-white transition">
+
+                        MCP Endpoints
+
+                    </a>
+
+                    <a href="#claude"
+                       class="block text-slate-300 hover:text-white transition">
+
+                        Claude Desktop
+
+                    </a>
+
+                    <a href="#cursor"
+                       class="block text-slate-300 hover:text-white transition">
+
+                        Cursor Integration
+
+                    </a>
+
+                    <a href="#openai"
+                       class="block text-slate-300 hover:text-white transition">
+
+                        OpenAI Integration
+
+                    </a>
+
+                    <a href="#api-examples"
+                       class="block text-slate-300 hover:text-white transition">
+
+                        API Examples
+
+                    </a>
+
+                    <a href="#troubleshooting"
+                       class="block text-slate-300 hover:text-white transition">
+
+                        Troubleshooting
+
+                    </a>
+
+                </nav>
+
+            </div>
+
+        </aside>
+
+        <!-- CONTENT -->
+
+        <div class="space-y-10">
+
+            <!-- OVERVIEW -->
+
+            <section id="overview"
+                     class="bg-white/[0.03] border border-white/10 rounded-[32px] p-10 backdrop-blur-xl">
+
+                <h2 class="text-3xl font-bold mb-6">
+                    Overview
+                </h2>
+
+                <p class="text-slate-400 leading-8 mb-6">
+
+                    AISidekick provides hosted MCP (Model Context Protocol) services for Oracle Primavera P6 and Primavera Unifier integrations.
+
+                </p>
+
+                <p class="text-slate-400 leading-8">
+
+                    Supported AI platforms can securely connect to enterprise Primavera environments using authenticated MCP endpoints.
+
+                </p>
+
+            </section>
+
+            <!-- AUTH -->
+
+            <section id="authentication"
+                     class="bg-white/[0.03] border border-white/10 rounded-[32px] p-10 backdrop-blur-xl">
+
+                <h2 class="text-3xl font-bold mb-6">
+                    Authentication
+                </h2>
+
+                <p class="text-slate-400 leading-8 mb-8">
+
+                    Every AISidekick subscription includes a secure API key for MCP authentication.
+
+                </p>
+
+                <div class="bg-black/40 border border-white/10 rounded-2xl p-6 overflow-x-auto">
+
+<pre class="text-sm text-teal-300"><code>
+Authorization: Bearer YOUR_API_KEY
+</code></pre>
+
+                </div>
+
+            </section>
+
+            <!-- MCP ENDPOINTS -->
+
+            <section id="mcp-endpoints"
+                     class="bg-white/[0.03] border border-white/10 rounded-[32px] p-10 backdrop-blur-xl">
+
+                <h2 class="text-3xl font-bold mb-6">
+                    MCP Endpoints
+                </h2>
+
+                <p class="text-slate-400 leading-8 mb-8">
+
+                    Use the following hosted endpoints to connect your AI platforms.
+
+                </p>
+
+                <div class="space-y-6">
+
+                    <div class="bg-black/40 border border-white/10 rounded-2xl p-6">
+
+                        <div class="text-sm text-slate-400 mb-3">
+                            P6 Sidekick Endpoint
+                        </div>
+
+<pre class="text-sm text-teal-300 overflow-x-auto"><code>
+https://api.aisidekick.ai/mcp/p6
+</code></pre>
+
+                    </div>
+
+                    <div class="bg-black/40 border border-white/10 rounded-2xl p-6">
+
+                        <div class="text-sm text-slate-400 mb-3">
+                            Unifier Sidekick Endpoint
+                        </div>
+
+<pre class="text-sm text-teal-300 overflow-x-auto"><code>
+https://api.aisidekick.ai/mcp/unifier
+</code></pre>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- CLAUDE -->
+
+            <section id="claude"
+                     class="bg-white/[0.03] border border-white/10 rounded-[32px] p-10 backdrop-blur-xl">
+
+                <h2 class="text-3xl font-bold mb-6">
+                    Claude Desktop Integration
+                </h2>
+
+                <p class="text-slate-400 leading-8 mb-8">
+
+                    Configure Claude Desktop to use AISidekick MCP endpoints.
+
+                </p>
+
+                <div class="bg-black/40 border border-white/10 rounded-2xl p-6 overflow-x-auto">
+
+<pre class="text-sm text-teal-300"><code>
+{
+  "mcpServers": {
+    "p6-sidekick": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-fetch",
+        "https://api.aisidekick.ai/mcp/p6"
+      ],
+      "env": {
+        "AUTH_TOKEN": "YOUR_API_KEY"
+      }
+    }
+  }
+}
+</code></pre>
+
+                </div>
+
+            </section>
+
+            <!-- CURSOR -->
+
+            <section id="cursor"
+                     class="bg-white/[0.03] border border-white/10 rounded-[32px] p-10 backdrop-blur-xl">
+
+                <h2 class="text-3xl font-bold mb-6">
+                    Cursor Integration
+                </h2>
+
+                <p class="text-slate-400 leading-8">
+
+                    Cursor supports MCP integrations using hosted endpoints and authenticated API access.
+
+                </p>
+
+            </section>
+
+            <!-- OPENAI -->
+
+            <section id="openai"
+                     class="bg-white/[0.03] border border-white/10 rounded-[32px] p-10 backdrop-blur-xl">
+
+                <h2 class="text-3xl font-bold mb-6">
+                    OpenAI Integration
+                </h2>
+
+                <p class="text-slate-400 leading-8">
+
+                    AISidekick MCP infrastructure can be integrated into OpenAI-powered enterprise workflow applications.
+
+                </p>
+
+            </section>
+
+            <!-- API EXAMPLES -->
+
+            <section id="api-examples"
+                     class="bg-white/[0.03] border border-white/10 rounded-[32px] p-10 backdrop-blur-xl">
+
+                <h2 class="text-3xl font-bold mb-6">
+                    API Examples
+                </h2>
+
+                <p class="text-slate-400 leading-8 mb-8">
+
+                    Example authenticated request using Python.
+
+                </p>
+
+                <div class="bg-black/40 border border-white/10 rounded-2xl p-6 overflow-x-auto">
+
+<pre class="text-sm text-teal-300"><code>
+import requests
+
+headers = {
+    "Authorization": "Bearer YOUR_API_KEY"
+}
+
+response = requests.get(
+    "https://api.aisidekick.ai/mcp/p6",
+    headers=headers
+)
+
+print(response.json())
+</code></pre>
+
+                </div>
+
+            </section>
+
+            <!-- TROUBLESHOOTING -->
+
+            <section id="troubleshooting"
+                     class="bg-white/[0.03] border border-white/10 rounded-[32px] p-10 backdrop-blur-xl">
+
+                <h2 class="text-3xl font-bold mb-6">
+                    Troubleshooting
+                </h2>
+
+                <div class="space-y-8">
+
+                    <div>
+
+                        <h4 class="text-xl font-semibold mb-3">
+                            Authentication Errors
+                        </h4>
+
+                        <p class="text-slate-400 leading-8">
+
+                            Verify that your API key is active and included in the Authorization header.
+
+                        </p>
+
+                    </div>
+
+                    <div>
+
+                        <h4 class="text-xl font-semibold mb-3">
+                            MCP Connection Issues
+                        </h4>
+
+                        <p class="text-slate-400 leading-8">
+
+                            Ensure the MCP endpoint URL is correct and accessible from your AI client.
+
+                        </p>
+
+                    </div>
+
+                    <div>
+
+                        <h4 class="text-xl font-semibold mb-3">
+                            Unsupported AI Client
+                        </h4>
+
+                        <p class="text-slate-400 leading-8">
+
+                            Verify that your AI platform supports MCP integrations or external connectors.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- CTA -->
+
+<section class="relative overflow-hidden bg-[#0b1020] text-white py-28">
+
+    <div class="absolute inset-0 bg-gradient-to-r from-teal-500/[0.04] to-cyan-500/[0.04]"></div>
+
+    <div class="relative max-w-5xl mx-auto px-6 text-center">
+
+        <h2 class="text-4xl lg:text-6xl font-bold leading-tight mb-8">
+
+            Ready to Connect AI to Primavera?
+
+        </h2>
+
+        <p class="text-slate-400 text-lg leading-8 max-w-3xl mx-auto mb-12">
+
+            Start building AI-powered project controls workflows with secure MCP infrastructure from AISidekick.
+
+        </p>
+
+        <div class="flex flex-wrap justify-center gap-6">
+
+            <a href="#"
+               class="bg-gradient-to-r from-teal-300 to-cyan-300 text-black px-8 py-5 rounded-2xl font-semibold hover:scale-105 transition-all duration-300 shadow-xl shadow-teal-500/20">
+
+                Get Started
+
+            </a>
+
+            <a href="{% url 'pricing' %}"
+               class="border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] px-8 py-5 rounded-2xl font-semibold transition-all duration-300">
+
+                View Pricing
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
