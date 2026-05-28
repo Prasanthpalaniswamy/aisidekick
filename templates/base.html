@@ -22,6 +22,64 @@
     {% block content %}
     {% endblock %}
 
+    <!-- SCROLL TO TOP BUTTON -->
+
+<button id="scrollToTopBtn"
+        class="fixed bottom-6 right-6 z-50 hidden items-center justify-center w-14 h-14 rounded-full bg-white/10 backdrop-blur-xl border border-white/10 text-white shadow-2xl hover:bg-teal-300 hover:text-black transition-all duration-300 hover:scale-110">
+
+    <!-- ARROW ICON -->
+
+    <svg xmlns="http://www.w3.org/2000/svg"
+         class="w-6 h-6"
+         fill="none"
+         viewBox="0 0 24 24"
+         stroke="currentColor">
+
+        <path stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M5 15l7-7 7 7"/>
+
+    </svg>
+
+</button>
+
+<!-- SCROLL TO TOP SCRIPT -->
+
+<script>
+
+    const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+
+    // SHOW BUTTON AFTER SCROLL
+
+    window.addEventListener('scroll', () => {
+
+        if (window.scrollY > 300) {
+
+            scrollToTopBtn.classList.remove('hidden');
+            scrollToTopBtn.classList.add('flex');
+
+        } else {
+
+            scrollToTopBtn.classList.remove('flex');
+            scrollToTopBtn.classList.add('hidden');
+
+        }
+
+    });
+
+    // SMOOTH SCROLL TO TOP
+
+    scrollToTopBtn.addEventListener('click', () => {
+
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+
+    });
+
+</script>
 </body>
 
 </html>
