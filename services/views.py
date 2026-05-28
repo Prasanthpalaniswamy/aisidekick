@@ -395,6 +395,12 @@ def privacy(request):
 def terms(request):
     return render(request, 'pages/terms.html')
 
+def subscribe(request):
+    return render(request, 'pages/subscribe.html')
+
+def apikey(request):
+    return render(request, 'pages/apikey.html')
+
 def health_check(request):
     """Mirror of Node's /health"""
     return JsonResponse({"status": "OK", "message": "Server is running"})
