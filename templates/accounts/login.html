@@ -1,0 +1,169 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}
+Login | AISidekick
+{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+
+<section class="relative overflow-hidden bg-[#0b1020] text-white py-24">
+
+    <!-- BACKGROUND GLOWS -->
+
+    <div class="absolute top-[-200px] left-[-150px] w-[500px] h-[500px] bg-teal-500/10 blur-3xl rounded-full"></div>
+
+    <div class="absolute bottom-[-200px] right-[-150px] w-[500px] h-[500px] bg-cyan-500/10 blur-3xl rounded-full"></div>
+
+    <div class="relative max-w-7xl mx-auto px-6">
+
+        <div class="max-w-2xl mx-auto text-center">
+
+            <div
+                class="inline-flex items-center gap-2 bg-white/[0.03] border border-white/10 rounded-full px-4 py-2 text-sm text-slate-300 mb-8 backdrop-blur-xl">
+
+                Secure Account Access
+
+            </div>
+
+            <h1 class="text-5xl md:text-6xl font-bold tracking-tight mb-8">
+
+                Welcome Back
+
+            </h1>
+
+            <p class="text-slate-400 text-lg leading-8">
+
+                Sign in to access your subscriptions, API keys, MCP endpoints, and usage dashboard.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- LOGIN FORM -->
+
+<section class="bg-[#0f172a] text-white py-24">
+
+    <div class="max-w-lg mx-auto px-6">
+
+        <div class="bg-white/[0.03] border border-white/10 rounded-[32px] p-8 md:p-10 backdrop-blur-xl">
+
+            <h2 class="text-3xl font-bold mb-3">
+
+                Login
+
+            </h2>
+
+            <p class="text-slate-400 mb-10">
+
+                Enter your credentials to continue.
+
+            </p>
+
+            <form method="post">
+
+                {% csrf_token %}
+
+                <div class="space-y-6">
+
+                    <!-- USERNAME -->
+
+                    <div>
+
+                        <label class="block text-sm text-slate-300 mb-3">
+
+                            Username
+
+                        </label>
+
+                        <input type="text" name="username" required
+                            class="w-full bg-black/30 border border-white/10 rounded-2xl px-5 py-4 text-white placeholder:text-slate-500 focus:outline-none focus:border-teal-300 transition"
+                            placeholder="Enter username">
+
+                    </div>
+
+                    <!-- PASSWORD -->
+
+                    <div>
+
+                        <label class="block text-sm text-slate-300 mb-3">
+
+                            Password
+
+                        </label>
+
+                        <input type="password" name="password" required
+                            class="w-full bg-black/30 border border-white/10 rounded-2xl px-5 py-4 text-white placeholder:text-slate-500 focus:outline-none focus:border-teal-300 transition"
+                            placeholder="Enter password">
+
+                    </div>
+
+                    <!-- ERRORS -->
+
+                    {% if form.errors %}
+
+                    <div class="bg-red-500/10 border border-red-500/20 rounded-2xl p-4 text-red-300 text-sm">
+
+                        Invalid username or password.
+
+                    </div>
+
+                    {% endif %}
+
+                    <!-- BUTTON -->
+
+                    <button type="submit"
+                        class="w-full bg-gradient-to-r from-teal-300 to-cyan-300 text-black py-4 rounded-2xl font-semibold hover:scale-[1.02] transition-all duration-300 shadow-xl shadow-teal-500/20">
+
+                        Sign In
+
+                    </button>
+                    <!-- <a href="/accounts/google/login/"
+                        class="w-full flex items-center justify-center gap-3 bg-white text-black py-4 rounded-2xl font-semibold">
+
+                        Continue with Google
+
+                    </a> -->
+
+                    {% load socialaccount %}
+
+                    <a href="{% provider_login_url 'google' %}"
+                        class="w-full flex items-center justify-center gap-3 bg-white text-black py-4 rounded-2xl font-semibold">
+
+                        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" class="w-5 h-5">
+
+                        Continue with Google
+
+                    </a>
+
+
+                </div>
+
+            </form>
+
+            <!-- REGISTER LINK -->
+
+            <div class="mt-8 text-center text-slate-400">
+
+                Don't have an account?
+
+                <a href="{% url 'register' %}" class="text-teal-300 hover:text-white transition">
+
+                    Create Account
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

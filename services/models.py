@@ -124,3 +124,245 @@ class Review(models.Model):
 
     def __str__(self):
         return f"Review for {self.booking} - {self.rating} stars"
+
+# Subscripon Plan model
+
+
+from django.db import models
+from django.contrib.auth.models import User
+from django.utils import timezone
+from datetime import timedelta
+
+# class SubscriptionPlan(models.Model):
+
+#     name = models.CharField(max_length=100)
+
+#     price = models.DecimalField(
+#         max_digits=10,
+#         decimal_places=2
+#     )
+
+#     credits = models.IntegerField(default=0)
+
+#     active = models.BooleanField(default=True)
+
+#     def __str__(self):
+#         return self.name
+
+
+class SubscriptionType(models.TextChoices):
+    BASIC = "basic", "Basic"
+    PRO = "pro", "Pro"
+    ENTERPRISE = "enterprise", "Enterprise"
+
+
+class BillingPeriod(models.TextChoices):
+    MONTHLY = "monthly", "Monthly"
+    YEARLY = "yearly", "Yearly"
+
+
+class Feature(models.Model):
+    name = models.CharField(max_length=200)
+    def __str__(self):
+        return self.name   
+
+
+
+class SubscriptionPlan(models.Model):
+
+    plan_type = models.CharField(
+        max_length=20,
+        choices=SubscriptionType.choices, default=SubscriptionType.BASIC
+    )
+
+    name = models.CharField(
+        max_length=100
+    )
+
+    description = models.CharField(
+        max_length=255,
+        default=""
+    )
+
+    is_custom_pricing = models.BooleanField(
+        default=False
+    )
+
+    price = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        null=True,
+        blank=True
+    )
+
+    billing_period = models.CharField(
+        max_length=20,
+        choices=BillingPeriod.choices,
+        default=BillingPeriod.MONTHLY
+    )
+
+    features = models.ManyToManyField(
+        Feature,
+        blank=True
+    )
+
+    checkout_button_label = models.CharField(
+        max_length=50,
+        default="Get Started"
+    )
+
+    active = models.BooleanField(
+        default=True
+    )
+
+    created_at = models.DateTimeField(
+        auto_now_add=True
+        
+    )
+
+    updated_at = models.DateTimeField(
+        auto_now=True
+    )
+    is_featured = models.BooleanField(
+        default=False
+    )   
+
+    included_requests = models.PositiveIntegerField(
+    null=True,
+    blank=True
+    )
+    def __str__(self):
+        return f"{self.name} ({self.get_plan_type_display()})"
+
+
+def default_expiry():
+        return timezone.now() + timedelta(days=30)
+# subscription model
+class Subscription(models.Model):
+
+
+    STATUS_CHOICES = [
+        ("PENDING", "Pending"),
+        ("ACTIVE", "Active"),
+        ("EXPIRED", "Expired"),
+        ("CANCELLED", "Cancelled"),
+    ]
+
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE
+    )
+
+    plan = models.ForeignKey(
+        SubscriptionPlan,
+        on_delete=models.CASCADE
+    )
+
+    status = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default="PENDING"
+    )
+
+    razorpay_order_id = models.CharField(
+        max_length=255,
+        blank=True,
+        null=True
+    )
+
+    razorpay_payment_id = models.CharField(
+        max_length=255,
+        blank=True,
+        null=True
+    )
+
+    razorpay_signature = models.TextField(
+        blank=True,
+        null=True
+    )
+
+    created_at = models.DateTimeField(
+        auto_now_add=True
+    )
+
+    expires_at = models.DateTimeField(
+            default=default_expiry
+    )
+    def __str__(self):
+        return f"{self.user.username} - {self.plan.name}"
+
+
+
+   
+
+
+from django.db import models
+
+
+class SubscriptionRequest(models.Model):
+
+    plan = models.ForeignKey(
+        'SubscriptionPlan',
+        on_delete=models.CASCADE
+    )
+
+    full_name = models.CharField(
+        max_length=200
+    )
+
+    email = models.EmailField()
+
+    company = models.CharField(
+        max_length=200,
+        blank=True
+    )
+
+    created_at = models.DateTimeField(
+        auto_now_add=True
+    )
+
+    def __str__(self):
+        return f"{self.full_name} - {self.plan.name}"
+
+
+import secrets
+
+class APIKey(models.Model):
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE
+    )
+    subscription = models.ForeignKey(
+        Subscription,
+        on_delete=models.CASCADE
+    )
+    name = models.CharField(
+        max_length=100,
+        default="Default Key"
+    )
+    key = models.CharField(
+        max_length=128,
+        unique=True
+    )
+    is_active = models.BooleanField(
+        default=True
+    )
+    created_at = models.DateTimeField(
+        auto_now_add=True
+    )
+    last_used_at = models.DateTimeField(
+        blank=True,
+        null=True
+    )
+
+    @staticmethod
+    def generate_key():
+        return secrets.token_hex(32)
+
+    def save(self, *args, **kwargs):
+        if not self.key:
+            self.key = self.generate_key()
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.name}"

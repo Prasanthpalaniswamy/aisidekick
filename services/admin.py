@@ -1,5 +1,6 @@
 from django.contrib import admin
-
+# from django.contrib import admin
+from .models import SubscriptionPlan, Subscription,Feature,SubscriptionRequest
 from .models import ServiceCategory, Service, Booking, Helper, TrainingSlot
 
 admin.site.site_header = "Service Booking System Administration"
@@ -40,3 +41,39 @@ class TrainingSlotAdmin(admin.ModelAdmin):
         return obj.participants.count()
     participant_count.short_description = 'Participants'
 
+
+
+# admin.site.register(SubscriptionPlan)
+admin.site.register(Subscription)
+admin.site.register(SubscriptionRequest)
+
+
+# from django.contrib import admin
+# from .models import SubscriptionPlan, Feature
+
+
+@admin.register(Feature)
+class FeatureAdmin(admin.ModelAdmin):
+    search_fields = ["name"]
+
+
+@admin.register(SubscriptionPlan)
+class SubscriptionPlanAdmin(admin.ModelAdmin):
+
+    list_display = (
+        "name",
+        "plan_type",
+        "price",
+        "billing_period",
+        "active"
+    )
+
+    list_filter = (
+        "plan_type",
+        "billing_period",
+        "active"
+    )
+
+    filter_horizontal = (
+        "features",
+    )

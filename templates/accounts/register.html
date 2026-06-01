@@ -1,0 +1,228 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}
+Create Account | AISidekick
+{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+
+<section class="relative overflow-hidden bg-[#0b1020] text-white py-24">
+
+    <!-- BACKGROUND GLOWS -->
+
+    <div class="absolute top-[-200px] left-[-150px] w-[500px] h-[500px] bg-teal-500/10 blur-3xl rounded-full"></div>
+
+    <div class="absolute bottom-[-200px] right-[-150px] w-[500px] h-[500px] bg-cyan-500/10 blur-3xl rounded-full"></div>
+
+    <div class="relative max-w-7xl mx-auto px-6">
+
+        <div class="max-w-2xl mx-auto text-center">
+
+            <div class="inline-flex items-center gap-2 bg-white/[0.03] border border-white/10 rounded-full px-4 py-2 text-sm text-slate-300 mb-8 backdrop-blur-xl">
+
+                Create Your AISidekick Account
+
+            </div>
+
+            <h1 class="text-5xl md:text-6xl font-bold tracking-tight mb-8">
+
+                Get Started
+
+            </h1>
+
+            <p class="text-slate-400 text-lg leading-8">
+
+                Create your account to manage subscriptions, access MCP endpoints, generate API keys, and connect AI clients to Primavera.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- REGISTRATION FORM -->
+
+<section class="bg-[#0f172a] text-white py-24">
+
+    <div class="max-w-lg mx-auto px-6">
+
+        <div class="bg-white/[0.03] border border-white/10 rounded-[32px] p-8 md:p-10 backdrop-blur-xl">
+
+            <h2 class="text-3xl font-bold mb-3">
+
+                Create Account
+
+            </h2>
+
+            <p class="text-slate-400 mb-10">
+
+                Join AISidekick and start building AI-powered Primavera workflows.
+
+            </p>
+
+            <form method="post">
+
+                {% csrf_token %}
+
+                <!-- NON FIELD ERRORS -->
+
+                {% if form.non_field_errors %}
+
+                <div class="mb-6 bg-red-500/10 border border-red-500/20 rounded-2xl p-4">
+
+                    {% for error in form.non_field_errors %}
+
+                    <p class="text-red-300 text-sm">
+                        {{ error }}
+                    </p>
+
+                    {% endfor %}
+
+                </div>
+
+                {% endif %}
+
+                <div class="space-y-6">
+
+                    <!-- USERNAME -->
+
+                    <div>
+
+                        <label class="block text-sm text-slate-300 mb-3">
+
+                            Username
+
+                        </label>
+
+                        <input
+                            type="text"
+                            name="username"
+                            value="{{ form.username.value|default:'' }}"
+                            required
+                            class="w-full bg-black/30 border border-white/10 rounded-2xl px-5 py-4 text-white placeholder:text-slate-500 focus:outline-none focus:border-teal-300 transition"
+                            placeholder="Choose a username">
+
+                        {% if form.username.errors %}
+                            <p class="text-red-300 text-sm mt-2">
+                                {{ form.username.errors.0 }}
+                            </p>
+                        {% endif %}
+
+                    </div>
+
+                    <!-- EMAIL -->
+
+                    <div>
+
+                        <label class="block text-sm text-slate-300 mb-3">
+
+                            Email Address
+
+                        </label>
+
+                        <input
+                            type="email"
+                            name="email"
+                            value="{{ form.email.value|default:'' }}"
+                            required
+                            class="w-full bg-black/30 border border-white/10 rounded-2xl px-5 py-4 text-white placeholder:text-slate-500 focus:outline-none focus:border-teal-300 transition"
+                            placeholder="you@example.com">
+
+                        {% if form.email.errors %}
+                            <p class="text-red-300 text-sm mt-2">
+                                {{ form.email.errors.0 }}
+                            </p>
+                        {% endif %}
+
+                    </div>
+
+                    <!-- PASSWORD -->
+
+                    <div>
+
+                        <label class="block text-sm text-slate-300 mb-3">
+
+                            Password
+
+                        </label>
+
+                        <input
+                            type="password"
+                            name="password"
+                            required
+                            class="w-full bg-black/30 border border-white/10 rounded-2xl px-5 py-4 text-white placeholder:text-slate-500 focus:outline-none focus:border-teal-300 transition"
+                            placeholder="Create a secure password">
+
+                        {% if form.password.errors %}
+                            <p class="text-red-300 text-sm mt-2">
+                                {{ form.password.errors.0 }}
+                            </p>
+                        {% endif %}
+
+                    </div>
+
+                    <!-- CONFIRM PASSWORD -->
+
+                    <div>
+
+                        <label class="block text-sm text-slate-300 mb-3">
+
+                            Confirm Password
+
+                        </label>
+
+                        <input
+                            type="password"
+                            name="confirm_password"
+                            required
+                            class="w-full bg-black/30 border border-white/10 rounded-2xl px-5 py-4 text-white placeholder:text-slate-500 focus:outline-none focus:border-teal-300 transition"
+                            placeholder="Confirm your password">
+
+                        {% if form.confirm_password.errors %}
+                            <p class="text-red-300 text-sm mt-2">
+                                {{ form.confirm_password.errors.0 }}
+                            </p>
+                        {% endif %}
+
+                    </div>
+
+                    <!-- SUBMIT BUTTON -->
+
+                    <button
+                        type="submit"
+                        class="w-full bg-gradient-to-r from-teal-300 to-cyan-300 text-black py-4 rounded-2xl font-semibold hover:scale-[1.02] transition-all duration-300 shadow-xl shadow-teal-500/20">
+
+                        Create Account
+
+                    </button>
+
+                </div>
+
+            </form>
+
+            <!-- LOGIN LINK -->
+
+            <div class="mt-8 text-center text-slate-400">
+
+                Already have an account?
+
+                <a href="{% url 'login' %}"
+                   class="text-teal-300 hover:text-white transition">
+
+                    Sign In
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

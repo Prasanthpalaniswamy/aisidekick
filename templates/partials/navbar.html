@@ -8,8 +8,7 @@
 
             <!-- LOGO -->
 
-            <a href="{% url 'landing' %}"
-               class="text-2xl font-bold tracking-tight text-white">
+            <a href="{% url 'landing' %}" class="text-2xl font-bold tracking-tight text-white">
 
                 AI<span class="text-teal-300">Sidekick</span>
 
@@ -20,71 +19,100 @@
             <div class="hidden md:flex items-center gap-8 text-sm text-slate-300">
 
                 <a href="{% url 'landing' %}"
-                   class="transition duration-300 {% if request.resolver_match.url_name == 'landing' %}text-teal-300 border-b border-teal-300 pb-1{% else %}text-slate-300 hover:text-white{% endif %}">
+                    class="transition duration-300 {% if request.resolver_match.url_name == 'landing' %}text-teal-300 border-b border-teal-300 pb-1{% else %}text-slate-300 hover:text-white{% endif %}">
 
                     Home
 
                 </a>
 
                 <a href="{% url 'products' %}"
-                   class="transition duration-300 {% if request.resolver_match.url_name == 'products' %}text-teal-300 border-b border-teal-300 pb-1{% else %}text-slate-300 hover:text-white{% endif %}">
+                    class="transition duration-300 {% if request.resolver_match.url_name == 'products' %}text-teal-300 border-b border-teal-300 pb-1{% else %}text-slate-300 hover:text-white{% endif %}">
 
                     Products
 
                 </a>
 
                 <a href="{% url 'features' %}"
-                   class="transition duration-300 {% if request.resolver_match.url_name == 'features' %}text-teal-300 border-b border-teal-300 pb-1{% else %}text-slate-300 hover:text-white{% endif %}">
+                    class="transition duration-300 {% if request.resolver_match.url_name == 'features' %}text-teal-300 border-b border-teal-300 pb-1{% else %}text-slate-300 hover:text-white{% endif %}">
 
                     Features
 
                 </a>
 
                 <a href="{% url 'pricing' %}"
-                   class="transition duration-300 {% if request.resolver_match.url_name == 'pricing' %}text-teal-300 border-b border-teal-300 pb-1{% else %}text-slate-300 hover:text-white{% endif %}">
+                    class="transition duration-300 {% if request.resolver_match.url_name == 'pricing' %}text-teal-300 border-b border-teal-300 pb-1{% else %}text-slate-300 hover:text-white{% endif %}">
 
                     Pricing
 
                 </a>
 
                 <a href="{% url 'docs' %}"
-                   class="transition duration-300 {% if request.resolver_match.url_name == 'docs' %}text-teal-300 border-b border-teal-300 pb-1{% else %}text-slate-300 hover:text-white{% endif %}">
+                    class="transition duration-300 {% if request.resolver_match.url_name == 'docs' %}text-teal-300 border-b border-teal-300 pb-1{% else %}text-slate-300 hover:text-white{% endif %}">
 
                     Docs
 
                 </a>
 
                 <a href="{% url 'contact' %}"
-                   class="transition duration-300 {% if request.resolver_match.url_name == 'contact' %}text-teal-300 border-b border-teal-300 pb-1{% else %}text-slate-300 hover:text-white{% endif %}">
+                    class="transition duration-300 {% if request.resolver_match.url_name == 'contact' %}text-teal-300 border-b border-teal-300 pb-1{% else %}text-slate-300 hover:text-white{% endif %}">
 
                     Contact
 
                 </a>
 
-                <a href="{% url 'subscribe' %}"
-                   class="bg-gradient-to-r from-teal-300 to-cyan-300 text-black px-5 py-2.5 rounded-2xl font-semibold hover:scale-105 transition-all duration-300 shadow-lg shadow-teal-500/20">
+                <!-- <a href="{% url 'pricing' %}"
+                    class="bg-gradient-to-r from-teal-300 to-cyan-300 text-black px-5 py-2.5 rounded-2xl font-semibold hover:scale-105 transition-all duration-300 shadow-lg shadow-teal-500/20">
 
                     Get Started
 
+                </a> -->
+                {% if user.is_authenticated %}
+
+                <a href="{% url 'dashboard' %} "
+                    class="transition duration-300 {% if request.resolver_match.url_name == 'dashboard' %}text-teal-300 border-b border-teal-300 pb-1{% else %}text-slate-300 hover:text-white{% endif %}">
+
+                    Dashboard
                 </a>
+
+
+                <form method="post"
+      action="{% url 'logout' %}"
+      class="inline">
+    {% csrf_token %}
+
+    <button type="submit"
+            class="text-slate-300 hover:text-white transition">
+        Logout
+    </button>
+</form>
+
+                {% else %}
+
+                <a href="{% url 'login' %}"
+                    class="transition duration-300 {% if request.resolver_match.url_name == 'login' %}text-teal-300 border-b border-teal-300 pb-1{% else %}text-slate-300 hover:text-white{% endif %}">
+
+                    Login
+                </a>
+
+                <a href="{% url 'register' %}"
+                    class="bg-gradient-to-r from-teal-300 to-cyan-300 text-black px-5 py-2.5 rounded-2xl font-semibold hover:scale-105 transition-all duration-300 shadow-lg shadow-teal-500/20">
+
+                    Sign Up
+                </a>
+
+                {% endif %}
+
 
             </div>
 
             <!-- MOBILE MENU BUTTON -->
 
-            <button id="mobile-menu-button"
-                    class="md:hidden text-white">
+            <button id="mobile-menu-button" class="md:hidden text-white">
 
-                <svg xmlns="http://www.w3.org/2000/svg"
-                     class="w-7 h-7"
-                     fill="none"
-                     viewBox="0 0 24 24"
-                     stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
 
-                    <path stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M4 6h16M4 12h16M4 18h16"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
 
                 </svg>
 
@@ -94,60 +122,92 @@
 
         <!-- MOBILE MENU -->
 
-        <div id="mobile-menu"
-             class="hidden md:hidden pb-6">
+        <div id="mobile-menu" class="hidden md:hidden pb-6">
 
             <div class="flex flex-col gap-5 text-sm text-slate-300 border-t border-white/10 pt-6">
 
                 <a href="{% url 'landing' %}"
-                   class="{% if request.resolver_match.url_name == 'landing' %}text-teal-300{% else %}hover:text-white{% endif %}">
+                    class="{% if request.resolver_match.url_name == 'landing' %}text-teal-300{% else %}hover:text-white{% endif %}">
 
                     Home
 
                 </a>
 
                 <a href="{% url 'products' %}"
-                   class="{% if request.resolver_match.url_name == 'products' %}text-teal-300{% else %}hover:text-white{% endif %}">
+                    class="{% if request.resolver_match.url_name == 'products' %}text-teal-300{% else %}hover:text-white{% endif %}">
 
                     Products
 
                 </a>
 
                 <a href="{% url 'features' %}"
-                   class="{% if request.resolver_match.url_name == 'features' %}text-teal-300{% else %}hover:text-white{% endif %}">
+                    class="{% if request.resolver_match.url_name == 'features' %}text-teal-300{% else %}hover:text-white{% endif %}">
 
                     Features
 
                 </a>
 
                 <a href="{% url 'pricing' %}"
-                   class="{% if request.resolver_match.url_name == 'pricing' %}text-teal-300{% else %}hover:text-white{% endif %}">
+                    class="{% if request.resolver_match.url_name == 'pricing' %}text-teal-300{% else %}hover:text-white{% endif %}">
 
                     Pricing
 
                 </a>
 
                 <a href="{% url 'docs' %}"
-                   class="{% if request.resolver_match.url_name == 'docs' %}text-teal-300{% else %}hover:text-white{% endif %}">
+                    class="{% if request.resolver_match.url_name == 'docs' %}text-teal-300{% else %}hover:text-white{% endif %}">
 
                     Docs
 
                 </a>
 
                 <a href="{% url 'contact' %}"
-                   class="{% if request.resolver_match.url_name == 'contact' %}text-teal-300{% else %}hover:text-white{% endif %}">
+                    class="{% if request.resolver_match.url_name == 'contact' %}text-teal-300{% else %}hover:text-white{% endif %}">
 
                     Contact
 
                 </a>
 
-                <a href="{% url 'subscribe' %}"
-                   class="bg-gradient-to-r from-teal-300 to-cyan-300 text-black px-5 py-3 rounded-2xl font-semibold text-center mt-2">
+                <!-- <a href="{% url 'pricing' %}"
+                    class="bg-gradient-to-r from-teal-300 to-cyan-300 text-black px-5 py-3 rounded-2xl font-semibold text-center mt-2">
 
                     Get Started
 
+                </a> -->
+                {% if user.is_authenticated %}
+
+                <a href="{% url 'dashboard' %}"
+                class="{% if request.resolver_match.url_name == 'dashboard' %}text-teal-300{% else %}hover:text-white{% endif %}">
+
+                    Dashboard
                 </a>
 
+                <form method="post"
+      action="{% url 'logout' %}"
+      class="inline">
+    {% csrf_token %}
+
+    <button type="submit"
+            class="text-slate-300 hover:text-white transition">
+        Logout
+    </button>
+</form>
+
+                {% else %}
+
+                <a href="{% url 'login' %}"
+                    class="{% if request.resolver_match.url_name == 'login' %}text-teal-300{% else %}hover:text-white{% endif %}">
+
+                    Login
+                </a>
+
+                <a href="{% url 'register' %}"
+                    class="{% if request.resolver_match.url_name == 'register' %}text-teal-300{% else %}hover:text-white{% endif %}">
+
+                    Sign Up
+                </a>
+
+                {% endif %}
             </div>
 
         </div>

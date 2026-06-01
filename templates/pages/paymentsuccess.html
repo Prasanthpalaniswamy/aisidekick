@@ -1,0 +1,240 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}
+Payment Successful | AISidekick
+{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+
+<section class="relative overflow-hidden bg-[#0b1020] text-white py-28">
+
+    <!-- GLOW EFFECTS -->
+
+    <div class="absolute top-[-200px] left-[-150px] w-[500px] h-[500px] bg-teal-500/10 blur-3xl rounded-full"></div>
+
+    <div class="absolute bottom-[-200px] right-[-150px] w-[500px] h-[500px] bg-cyan-500/10 blur-3xl rounded-full"></div>
+
+    <div class="relative max-w-5xl mx-auto px-6">
+
+        <div class="max-w-3xl mx-auto text-center">
+
+            <!-- SUCCESS ICON -->
+
+            <div class="mx-auto mb-10 w-24 h-24 rounded-full bg-teal-300/10 border border-teal-300/20 flex items-center justify-center">
+
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     class="w-12 h-12 text-teal-300"
+                     fill="none"
+                     viewBox="0 0 24 24"
+                     stroke="currentColor">
+
+                    <path stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M5 13l4 4L19 7"/>
+
+                </svg>
+
+            </div>
+
+            <div class="inline-flex items-center gap-2 bg-teal-500/10 border border-teal-300/20 rounded-full px-4 py-2 text-sm text-teal-300 mb-8">
+
+                Payment Confirmed
+
+            </div>
+
+            <h1 class="text-5xl md:text-6xl font-bold tracking-tight leading-tight mb-8">
+
+                Subscription Activated
+
+            </h1>
+
+            <p class="text-slate-400 text-lg leading-8 max-w-2xl mx-auto">
+
+                Thank you for subscribing to AISidekick. Your payment has been successfully processed and your subscription is now active.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- DETAILS -->
+
+<section class="bg-[#0f172a] text-white py-24">
+
+    <div class="max-w-6xl mx-auto px-6">
+
+        <div class="grid lg:grid-cols-2 gap-8">
+
+            <!-- SUBSCRIPTION DETAILS -->
+
+            <div class="bg-white/[0.03] border border-white/10 rounded-[32px] p-10 backdrop-blur-xl">
+
+                <h2 class="text-2xl font-bold mb-8">
+
+                    Subscription Details
+
+                </h2>
+
+                <div class="space-y-6">
+
+                    <div class="flex justify-between border-b border-white/10 pb-4">
+
+                        <span class="text-slate-400">
+                            Plan
+                        </span>
+
+                        <span class="font-semibold">
+                            {{ subscription.plan.name }}
+                        </span>
+
+                    </div>
+
+                    <div class="flex justify-between border-b border-white/10 pb-4">
+
+                        <span class="text-slate-400">
+                            Status
+                        </span>
+
+                        <span class="text-teal-300 font-semibold">
+                            Active
+                        </span>
+
+                    </div>
+
+                    <div class="flex justify-between border-b border-white/10 pb-4">
+
+                        <span class="text-slate-400">
+                            Billing Cycle
+                        </span>
+
+                        <span>
+                            {{ subscription.plan.billing_period|title }}
+                        </span>
+
+                    </div>
+
+                    <div class="flex justify-between">
+
+                        <span class="text-slate-400">
+                            Expiry Date
+                        </span>
+
+                        <span>
+                            {{ subscription.expires_at|date:"d M Y" }}
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- NEXT STEPS -->
+
+            <div class="bg-gradient-to-br from-teal-500/10 to-cyan-500/10 border border-teal-300/20 rounded-[32px] p-10">
+
+                <h2 class="text-2xl font-bold mb-8">
+
+                    Next Steps
+
+                </h2>
+
+                <div class="space-y-6">
+
+                    <div class="flex gap-4">
+
+                        <div class="text-teal-300 font-bold">
+                            1
+                        </div>
+
+                        <div>
+
+                            <h4 class="font-semibold mb-2">
+                                Access Your Dashboard
+                            </h4>
+
+                            <p class="text-slate-400">
+                                View your subscription details and manage API access.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="flex gap-4">
+
+                        <div class="text-teal-300 font-bold">
+                            2
+                        </div>
+
+                        <div>
+
+                            <h4 class="font-semibold mb-2">
+                                Generate API Keys
+                            </h4>
+
+                            <p class="text-slate-400">
+                                Create secure API credentials for MCP integrations.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="flex gap-4">
+
+                        <div class="text-teal-300 font-bold">
+                            3
+                        </div>
+
+                        <div>
+
+                            <h4 class="font-semibold mb-2">
+                                Connect Your AI Client
+                            </h4>
+
+                            <p class="text-slate-400">
+                                Integrate Claude, Cursor, OpenAI and other MCP-compatible tools.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ACTION BUTTONS -->
+
+        <div class="flex flex-wrap justify-center gap-6 mt-16">
+
+            <a href="{% url 'dashboard' %}"
+               class="bg-gradient-to-r from-teal-300 to-cyan-300 text-black px-8 py-4 rounded-2xl font-semibold hover:scale-105 transition-all duration-300 shadow-xl shadow-teal-500/20">
+
+                Go to Dashboard
+
+            </a>
+
+            <a href="{% url 'docs' %}"
+               class="border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] px-8 py-4 rounded-2xl font-semibold transition-all duration-300">
+
+                View Documentation
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

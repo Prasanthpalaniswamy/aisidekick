@@ -22,3 +22,6 @@ staticfiles/
 venv/
 env/
 .venv/
+
+# secret_key
+googleoauth/

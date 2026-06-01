@@ -125,8 +125,11 @@ Subscribe | AISidekick
 </section>
 
 <section class="bg-[#0f172a] text-white py-24">
+
     <div class="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-10 items-start">
+
         <!-- LEFT SIDE -->
+
         <div class="space-y-8">
 
             <!-- BENEFITS -->
@@ -307,71 +310,150 @@ Subscribe | AISidekick
             </div>
 
         </div>
+
         <!-- RIGHT SIDE / FORM -->
+
         <div class="bg-white/[0.03] border border-white/10 rounded-[32px] p-6 md:p-10 backdrop-blur-xl">
+
             <h2 class="text-3xl font-bold mb-3">
+
                 Create Subscription
+
             </h2>
+
             <p class="text-slate-400 leading-7 mb-10">
+
                 Complete your subscription setup and receive your AISidekick API credentials.
+
             </p>
-            <form method="post" class="space-y-6">
-                {% csrf_token %}
+
+            <form class="space-y-6">
+
                 <!-- NAME -->
+
                 <div>
+
                     <label class="block text-sm text-slate-300 mb-3">
+
                         Full Name
+
                     </label>
-                    <input type="text" name="full_name" placeholder="John Doe"
+
+                    <input type="text" placeholder="John Doe"
                         class="w-full bg-black/30 border border-white/10 rounded-2xl px-5 py-4 text-white placeholder:text-slate-500 focus:outline-none focus:border-teal-300 transition">
+
                 </div>
+
                 <!-- EMAIL -->
+
                 <div>
+
                     <label class="block text-sm text-slate-300 mb-3">
+
                         Business Email
+
                     </label>
-                    <input type="email"  name="email" placeholder="john@company.com"
+
+                    <input type="email" placeholder="john@company.com"
                         class="w-full bg-black/30 border border-white/10 rounded-2xl px-5 py-4 text-white placeholder:text-slate-500 focus:outline-none focus:border-teal-300 transition">
+
                 </div>
+
                 <!-- COMPANY -->
+
                 <div>
+
                     <label class="block text-sm text-slate-300 mb-3">
+
                         Company
+
                     </label>
-                    <input type="text" name="company" placeholder="Your Organization"
+
+                    <input type="text" placeholder="Your Organization"
                         class="w-full bg-black/30 border border-white/10 rounded-2xl px-5 py-4 text-white placeholder:text-slate-500 focus:outline-none focus:border-teal-300 transition">
+
                 </div>
+
                 <!-- PRODUCT -->
+
                 <div>
+
                     <label class="block text-sm text-slate-300 mb-3">
+
                         Select Product
+
                     </label>
-                    <select name="product" class="w-full bg-black/30 border border-white/10 rounded-2xl px-5 py-4 text-white focus:outline-none focus:border-teal-300 transition">
+
+                    <select
+                        class="w-full bg-black/30 border border-white/10 rounded-2xl px-5 py-4 text-white focus:outline-none focus:border-teal-300 transition">
+
                         <option class="bg-[#0f172a]">
                             P6 Sidekick
                         </option>
+
                         <option class="bg-[#0f172a]">
                             Unifier Sidekick
                         </option>
+
                         <option class="bg-[#0f172a]">
                             Full AISidekick Suite
                         </option>
+
                     </select>
+
                 </div>
+
                 <!-- TERMS -->
+
                 <div class="flex items-start gap-3">
+
                     <input type="checkbox" class="mt-1 w-5 h-5 rounded border-white/20 bg-black/30">
+
                     <p class="text-sm text-slate-400 leading-6">
+
                         I agree to the Terms of Service and Privacy Policy.
+
                     </p>
+
                 </div>
+
                 <!-- BUTTON -->
-                <button type="submit"
-                    class="w-full bg-gradient-to-r from-teal-300 to-cyan-300 text-black py-4 rounded-2xl font-semibold hover:scale-[1.02] transition-all duration-300 shadow-xl shadow-teal-500/20">
-                    Continue to Checkout
-                </button>   
+                <a href="{% url 'subscribe_plan' selected_plan.id %}">
+
+
+                    <button type="submit"
+                        class="w-full bg-gradient-to-r from-teal-300 to-cyan-300 text-black py-4 rounded-2xl font-semibold hover:scale-[1.02] transition-all duration-300 shadow-xl shadow-teal-500/20">
+
+                        Continue to Checkout
+
+                    </button>
+                </a>
+
             </form>
+
         </div>
+
+    </div>
+
+
+
+</section>
+
+
+<section class="bg-[#0f172a] text-white py-24">
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 text-center">
+
+        <h2 class="text-3xl font-bold mb-4">
+
+            Ready to Get Started?
+
+        </h2>
+
+        <p class="text-slate-400 text-lg leading-8 max-w-2xl mx-auto mb-10">
+
+            Subscribe now and unlock secure AI-powered Primavera integrations with AISidekick.
+        </p>
     </div>
 </section>
 
