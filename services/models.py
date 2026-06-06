@@ -172,7 +172,7 @@ class SubscriptionPlan(models.Model):
 
     product_code = models.CharField(
         max_length=50,
-            # unique=True,
+            unique=True,
         default="TEMP"
     )
     plan_type = models.CharField(
