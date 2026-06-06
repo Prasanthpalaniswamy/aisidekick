@@ -1,9 +1,10 @@
 from django.urls import path
 # from . import views
 from .views.page_views import landing, pricing, products, features, docs, contact, privacy, terms, subscribe, apikey, health_check, dashboard
+from .views.api_views import validate_api_key
 from .views.service_views import home,my_bookings,submit_review,service_list, service_detail, book_service, view_cart, remove_from_cart
 from .views.helper_views import get_payment_details,signup, payment, process_payment_cart, helper_enroll, helper_dashboard, training_slots_view, book_training_slot, complete_training_slot, update_job_status
-from .views.payment_views import process_subscription_payment
+from .views.payment_views import process_subscription_payment,regenerate_api_key
 from .views.subscription_views import subscribe_plan
 # from .views.api_views import get_payment_details
     
@@ -50,8 +51,16 @@ path(
     name='dashboard'
 ),
     path('my-bookings/', my_bookings, name='my_bookings'),
-    
-    
+    path(
+    'dashboard/regenerate-token/',
+    regenerate_api_key,
+    name='regenerate_api_key'
+),
+    path(
+    "api/validate-key/",
+    validate_api_key,
+    name="validate_api_key"
+),
     path('helper/enroll/', helper_enroll, name='helper_enroll'),
     path('helper/dashboard/', helper_dashboard, name='helper_dashboard'),
     path('helper/training/', training_slots_view, name='training_slots'),

@@ -18,6 +18,8 @@ redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.conf import settings
+from django.utils import timezone
+
 
 from ..models import (
 SubscriptionPlan,
@@ -40,6 +42,20 @@ def subscribe_plan(request, plan_id):
     )
 
     try:
+        existing = Subscription.objects.filter(
+            user=request.user,
+            plan=plan,
+            status="ACTIVE"
+        ).exists()
+
+        if existing:
+
+            messages.info(
+                request,
+                "You already have an active subscription."
+            )
+
+            return redirect("dashboard")
 
         # Create Subscription record first
         subscription = Subscription.objects.create(
@@ -47,7 +63,13 @@ def subscribe_plan(request, plan_id):
             plan=plan,
             status="PENDING"
         )
+        if plan.is_custom_pricing:
+            messages.info(
+                request,
+                "Enterprise plans require consultation."
+            )
 
+            return redirect("contact")
         # Razorpay amount in paise
         amount = int(plan.price * 100)
 

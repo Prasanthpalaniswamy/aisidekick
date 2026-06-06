@@ -132,7 +132,10 @@ def process_subscription_payment(request, subscription_id):
             subscription.razorpay_signature = razorpay_signature
 
             subscription.save()
-
+            from services.models import APIKey
+            APIKey.objects.get_or_create(
+                user=subscription.user
+            )
             return render(
                 request,
                 'pages/paymentsuccess.html',
@@ -260,3 +263,22 @@ def get_payment_details(request, payment_id):
             "message": str(e)
         }, status=500)
 
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
+from services.models import APIKey
+
+
+@login_required
+def regenerate_api_key(request):
+
+    if request.method == "POST":
+
+        token = APIKey.objects.get(
+            user=request.user
+        )
+
+        token.key = APIKey.generate_key()
+
+        token.save()
+
+    return redirect('dashboard')

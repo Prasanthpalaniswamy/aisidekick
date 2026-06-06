@@ -86,10 +86,76 @@ Dashboard | AISidekick
 
                 </div>
 
+                {% if subscriptions %}
+
+                {% with sub=subscriptions.first %}
+
+                <div class="text-xl font-semibold">
+                    {{ sub.plan.name }}
+                </div>
+
+                <div class="inline-flex px-4 py-2 rounded-full bg-green-500/10 text-green-400">
+                    {{ sub.status }}
+                </div>
+
+                <div class="text-xl font-semibold">
+                    {{ sub.expires_at|date:"d M Y" }}
+                </div>
+
+                {% endwith %}
+
+                {% endif %}
+
+
             </div>
 
         </div>
+        <!-- Usage Card -->
 
+        <div class="bg-white/[0.03] border border-white/10 rounded-[32px] p-8 backdrop-blur-xl mb-8">
+
+            <div class="flex items-center justify-between mb-6">
+
+                <h2 class="text-2xl font-semibold">
+
+                    Usage This Month
+
+                </h2>
+
+                <span class="text-teal-300 font-semibold">
+
+                    {{ monthly_requests }} / {{ request_limit }}
+
+                </span>
+
+            </div>
+
+            <div class="w-full bg-black/40 rounded-full h-4">
+
+                <div class="bg-gradient-to-r from-teal-300 to-cyan-300 h-4 rounded-full"
+                    style="width: {{ usage_percentage }} %;">
+
+                </div>
+                <div class="flex justify-between mb-4">
+
+                    <span>
+                        {{ monthly_requests }} / {{ request_limit }}
+                    </span>
+
+                    <span class="text-teal-300">
+                        {{ usage_percentage }}%
+                    </span>
+
+                </div>
+            </div>
+
+            <div class="mt-4 text-slate-400">
+
+                API requests consumed this billing cycle.
+
+            </div>
+
+        </div>
         <!-- API Key Card -->
 
         <div class="bg-white/[0.03] border border-white/10 rounded-[32px] p-8 backdrop-blur-xl mb-8">
@@ -102,24 +168,63 @@ Dashboard | AISidekick
 
                 </h2>
 
-                <button
-                    class="bg-gradient-to-r from-teal-300 to-cyan-300 text-black px-5 py-2 rounded-xl font-semibold">
+                <form method="POST" action="{% url 'regenerate_api_key' %}">
 
-                    Regenerate
+                    {% csrf_token %}
 
-                </button>
+                    <button type="submit"
+                        onclick="return confirm('Regenerating your API key will invalidate the existing key. Continue?')"
+                        class="bg-gradient-to-r from-teal-300 to-cyan-300 text-black px-5 py-2 rounded-xl font-semibold">
+
+                        Regenerate
+
+                    </button>
+
+                </form>
 
             </div>
 
             <div class="bg-black/40 border border-white/10 rounded-2xl p-5 overflow-x-auto">
-
+                {% if token %}
                 <code class="text-teal-300">
-                    not a key _live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+                    {{token.key}}
                 </code>
+                <button onclick="copyApiKey()" class="px-4 py-2 rounded-xl border border-white/10">
 
+                    Copy
+
+                </button>
+                {% else %}
+                <div class="text-slate-400">
+                    No API Key Generated
+                </div>
+                {% endif %}
             </div>
 
         </div>
+
+        <!--subscription list-->
+        <h3 class="text-xl font-bold mb-4">
+            Active Products
+        </h3>
+
+        <ul class="space-y-3">
+
+            {% for sub in subscriptions %}
+
+            <li class="flex items-center gap-3">
+
+                <span class="text-teal-300">✓</span>
+
+                <span>
+                    {{ sub.plan.name }}
+                </span>
+
+            </li>
+
+            {% endfor %}
+
+        </ul>
 
         <!-- MCP Endpoints -->
 
@@ -172,5 +277,19 @@ Dashboard | AISidekick
     </div>
 
 </section>
+
+
+<script>
+
+    function copyApiKey() {
+
+        const text =
+            document.getElementById("apikey").innerText;
+
+        navigator.clipboard.writeText(text);
+
+    }
+
+</script>
 
 {% endblock %}

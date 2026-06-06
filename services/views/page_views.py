@@ -2,6 +2,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render,get_object_or_404,redirect
 from django.http import JsonResponse
+from django.utils import timezone
 
 from ..models import ServiceCategory
 
@@ -90,12 +91,45 @@ from ..models import SubscriptionPlan,SubscriptionRequest
         context
     )
 '''
-
+from services.models import APIKey,Subscription
+@login_required
 def dashboard(request):
+    token = APIKey.objects.filter(
+        user=request.user,
+        is_active=True
+    ).first()
+
+    active_subscriptions  = Subscription.objects.filter(
+        user=request.user,status='ACTIVE',
+        expires_at__gt=timezone.now()
+    )
+    monthly_requests = 0 # placeholder until usage tracking exists
+
+    usage_percentage = 0
+    request_limit =sum(
+    sub.plan.included_requests or 0
+    for sub in active_subscriptions
+)
+
+
+    if request_limit > 0:
+        usage_percentage = min(
+            round((monthly_requests / request_limit) * 100),
+            100
+        )
+    else:
+        usage_percentage = 0
 
     return render(
         request,
-        'pages/dashboard.html'
+        'pages/dashboard.html',
+        {
+            'token': token,
+            'subscriptions': active_subscriptions ,
+            'monthly_requests': monthly_requests,
+            'request_limit': request_limit,
+            'usage_percentage': usage_percentage,
+        }
     )
 
 @login_required

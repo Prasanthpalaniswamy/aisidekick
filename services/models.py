@@ -170,6 +170,11 @@ class Feature(models.Model):
 
 class SubscriptionPlan(models.Model):
 
+    product_code = models.CharField(
+        max_length=50,
+            unique=True,
+        default="TEMP"
+    )
     plan_type = models.CharField(
         max_length=20,
         choices=SubscriptionType.choices, default=SubscriptionType.BASIC
@@ -226,11 +231,13 @@ class SubscriptionPlan(models.Model):
     is_featured = models.BooleanField(
         default=False
     )   
-
     included_requests = models.PositiveIntegerField(
     null=True,
     blank=True
     )
+    is_unlimited = models.BooleanField(
+    default=False
+)
     def __str__(self):
         return f"{self.name} ({self.get_plan_type_display()})"
 
@@ -328,17 +335,17 @@ class SubscriptionRequest(models.Model):
 import secrets
 
 class APIKey(models.Model):
-    user = models.ForeignKey(
+    user = models.OneToOneField(
         User,
         on_delete=models.CASCADE
     )
-    subscription = models.ForeignKey(
-        Subscription,
-        on_delete=models.CASCADE
-    )
+    # subscription = models.ForeignKey(
+    #     Subscription,
+    #     on_delete=models.CASCADE
+    # )
     name = models.CharField(
         max_length=100,
-        default="Default Key"
+        default="AISidekick API Key"
     )
     key = models.CharField(
         max_length=128,
@@ -365,4 +372,4 @@ class APIKey(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"{self.user.username} - {self.name}"
+        return f"API Key - {self.user.username}"
